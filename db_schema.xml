@@ -81,6 +81,10 @@
 <row name="status" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
 <row name="cohort_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="cohorts" row="id" />
@@ -93,7 +97,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="413" y="115" name="votes">
+<table x="415" y="88" name="votes">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
