@@ -29,6 +29,25 @@ class CohortsController < ApplicationController
 	end
   end
 
+  def update
+	  p "@@@@@@@@@"
+      p params
+	  @cohort = Cohort.find(params[:id])
+	  if @cohort.pitchable == true
+		  if @cohort.update(pitchable: false)
+		    redirect_to @cohort
+		  else
+		    redirect_to @cohorts
+		  end
+	  else
+	  	if @cohort.update(pitchable: true)
+		    redirect_to @cohort
+		else
+		    redirect_to @cohorts
+		end
+	  end
+	end 
+
   private
   def cohort_params
     params.require(:cohort).permit(:name)

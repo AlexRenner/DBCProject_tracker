@@ -5,14 +5,6 @@ class UsersController < ApplicationController
   def new
   end
 
-  def show
-    if current_user
-      render 'show'
-    else
-      redirect_to '/'
-    end
-  end
-
   def create
 		# # render plain: params[:article].inspect
 		# p user_params
@@ -44,6 +36,14 @@ class UsersController < ApplicationController
     else
       p @user.errors
       render 'edit'
+    end
+  end
+
+  def show
+    if current_user
+      render 'show'
+    else
+      render 'index'
     end
   end
 

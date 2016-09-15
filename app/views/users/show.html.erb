@@ -2,7 +2,12 @@
 
 <% if current_user.teacher %>
 	<p>You're a teacher!</p>
+	<%= link_to 'Add a New Cohort', new_cohort_path %><br><br>
+
 <% else %>
 	<p>You're a student!</p>
 
+
 <% end %>
+
+<%= link_to 'See All Cohorts', cohorts_path %>
