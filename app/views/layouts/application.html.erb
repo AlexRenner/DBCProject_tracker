@@ -9,6 +9,49 @@
   </head>
 
   <body>
-    <%= yield %>
+      <header>
+    <div>
+      <nav>
+        <ul>
+
+          <% if !current_user %>
+
+            <li>
+              <form method="get" action="/login"><input type="submit" value="login">
+              </form>
+            </li>
+
+            <li>
+              <form method="get" action="/users/new">
+              <input type="submit" value="sign up" >
+              </form>
+            </li>
+
+          <% else %>
+            <li>
+              <form method="get" action="/users/<%= current_user.id %>">
+                <input type="submit" value="go to profile">
+              </form>
+            </li>
+
+            <li>
+              <%= link_to "Logout", {controller: 'sessions', action: :destroy }, method: :delete %>
+            </li>
+
+          <% end %>
+
+          <li>
+            <form method="get" action="/">
+              <input type="submit" value="home">
+            </form>
+        </ul>
+      </nav>
+  </header>
+
+
+	<div>
+	  <%= yield %>
+	</div>
+
   </body>
 </html>
