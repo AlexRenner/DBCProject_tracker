@@ -5,7 +5,7 @@ module CohortHelper
   end
 
   def latest_round
-    @latest_round ||= current_cohort.rounds.distinct.last
+    @latest_round ||= current_cohort.rounds.last
   end
 
   def votable?
