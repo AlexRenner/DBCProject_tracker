@@ -5,6 +5,14 @@ class UsersController < ApplicationController
   def new
   end
 
+  def show
+    if current_user
+      render 'edit'
+    else
+      redirect_to '/'
+    end
+  end
+
   def create
 		# # render plain: params[:article].inspect
 		# p user_params
@@ -31,7 +39,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if current_user.teacher && @user.update(user_params)
       redirect_to '/'
     else
       p @user.errors
