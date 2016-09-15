@@ -4,7 +4,7 @@ Team.create(name: 'Unassigned')
 
 4.times{Team.create(name: Faker::Company.name)}
 
-round = Round.create
+round = Round.create(cohort_id: 1)
 
 User.create(first_name: 'Avner', last_name: 'Shannon', email: 'avner.shannon@fragrances.com', password: 'password', teacher: true)
 
