@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def show
     if current_user
-      render 'edit'
+      render 'show'
     else
       redirect_to '/'
     end
