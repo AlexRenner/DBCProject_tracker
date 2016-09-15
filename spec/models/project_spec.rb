@@ -9,8 +9,8 @@ describe Project do
 
   let(:cohort){Cohort.create(name: 'salamanders')}
   let(:team){Team.create(name: 'TBD')}
-  let(:round){Round.create}
-  let(:user){User.create(first_name: 'bob', last_name: 'bob', email: 'bob@bob.bob', hashed_password: 'password', teacher: false, cohort: cohort, team: team)}
+  let(:round){Round.create(cohort: cohort)}
+  let(:user){User.create(first_name: 'bob', last_name: 'bob', email: 'bob@bob.bob', password: 'password', teacher: false, cohort: cohort)}
   let(:project){project = Project.create(title: 'project1', description: 'asdkfdsa dsf fas fas sfa fdsa fas', cohort: cohort, team: team, originator: user)}
 
   describe "mean vote value" do
