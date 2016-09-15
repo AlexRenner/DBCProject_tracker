@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :password_hash, :presence => true
 
 
+  def make_teacher
+    self.update(teacher: true)
+  end
+
   def password
 	@password ||= BCrypt::Password.new(password_hash)
   end
