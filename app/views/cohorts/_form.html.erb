@@ -1,0 +1,22 @@
+<%= form_for @cohort do |f| %>
+ 
+  <% if @cohort.errors.any? %>
+    <div>
+      <ul>
+        <% @cohort.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>
