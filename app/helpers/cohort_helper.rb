@@ -5,13 +5,15 @@ module CohortHelper
   end
 
   def latest_round
-    current_cohort.rounds.distinct.last
+    @latest_round ||= current_cohort.rounds.distinct.last
   end
 
   def votable?
     latest_round.votable
   end
 
-  def
+  def pitchable?
+    current_cohort.pitchable
+  end
 
 end
