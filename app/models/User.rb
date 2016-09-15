@@ -1,7 +1,7 @@
 require 'bcrypt'
 class User < ActiveRecord::Base
-  belongs_to :cohort
-  belongs_to :team
+  belongs_to :cohort, required: false
+  belongs_to :team, required: false
   has_many :projects
   has_many :votes
 
