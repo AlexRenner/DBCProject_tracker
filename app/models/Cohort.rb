@@ -1,4 +1,6 @@
 class Cohort < ActiveRecord::Base
+  include CohortHelper
+
   has_many :students, class_name: 'User'
   has_many :projects
   has_many :votes, through: :students
