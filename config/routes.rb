@@ -3,5 +3,8 @@ Rails.application.routes.draw do
   resources :users
 
   delete '/sessions' => 'sessions#destroy'
+  post '/sessions' => 'sessions#create'
+  get '/sessions' => 'sessions#new'
+
   get '/' => 'users#index'
 end
