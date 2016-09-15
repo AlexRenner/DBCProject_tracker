@@ -1,0 +1,8 @@
+<h3>Hi, <%= current_user.first_name.capitalize %>!</h3>
+
+<% if current_user.teacher %>
+	<p>You're a teacher!</p>
+<% else %>
+	<p>You're a student!</p>
+
+<% end %>

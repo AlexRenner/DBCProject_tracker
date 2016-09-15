@@ -1,0 +1,11 @@
+
+<% if current_user %>
+
+	<h3> Welcome, <%= current_user.first_name.capitalize %></h3>
+
+<% else %>
+	
+	<%= link_to 'Register a new account', new_user_path %>
+
+
+<% end %>
