@@ -19,6 +19,15 @@ class UsersController < ApplicationController
   	end
   end
 
+  def edit
+    if current_user && current_user.teacher
+      @user = User.find(params[:id])
+      puts "Is a teacher"
+    else
+      puts "not a teacher"
+      redirect_to '/'
+    end
+  end
 
   private
   def user_params
