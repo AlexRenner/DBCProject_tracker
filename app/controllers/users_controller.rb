@@ -19,6 +19,14 @@ class UsersController < ApplicationController
   	end
   end
 
+  def show
+    if current_user
+      render 'show'
+    else
+      render 'index'
+    end
+  end
+
 
   private
   def user_params
