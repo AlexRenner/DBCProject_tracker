@@ -1,0 +1,9 @@
+<h3>Your cohort:</h3>
+<%= link_to "#{@cohort.name}", cohort_path(@cohort) %>
+<br>
+
+<h3>Current cohorts:</h3>
+
+<% @cohorts.each do |cohort| %>
+	<%= link_to "#{cohort.name}", cohort_path(cohort) %>
+<% end %>
