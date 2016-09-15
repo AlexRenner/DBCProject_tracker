@@ -1,5 +1,10 @@
 require 'bcrypt'
 class User < ActiveRecord::Base
+  belongs_to :cohort
+  belongs_to :team
+  has_many :projects
+  has_many :votes
+
   validates :email, :presence => true,
                        :uniqueness => true
   validates :first_name, :last_name, :password_hash, :presence => true
