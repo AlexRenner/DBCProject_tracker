@@ -17,14 +17,11 @@
           <% if !current_user %>
 
             <li>
-              <form method="get" action="/login"><input type="submit" value="login">
-              </form>
+              <%= link_to "Login", { controller: 'sessions', action: :new }%>
             </li>
 
             <li>
-              <form method="get" action="/users/new">
-              <input type="submit" value="sign up" >
-              </form>
+              <%= link_to "New User", new_user_path %>
             </li>
 
           <% else %>
@@ -41,9 +38,8 @@
           <% end %>
 
           <li>
-            <form method="get" action="/">
-              <input type="submit" value="home">
-            </form>
+            <%= link_to "Home", '/' %>
+          </li>
         </ul>
       </nav>
   </header>
