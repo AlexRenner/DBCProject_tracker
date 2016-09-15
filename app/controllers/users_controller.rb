@@ -22,16 +22,26 @@ class UsersController < ApplicationController
   def edit
     if current_user && current_user.teacher
       @user = User.find(params[:id])
-      puts "Is a teacher"
+      render 'edit'
     else
       puts "not a teacher"
       redirect_to '/'
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to '/'
+    else
+      p @user.errors
+      render 'edit'
+    end
+  end
+
   private
   def user_params
-    p params.require(:user).permit(:first_name, :last_name, :email, :password, :cohort_id)
+    p params.require(:user).permit(:first_name, :last_name, :email, :password, :cohort_id, :teacher)
   end
 
 end
