@@ -54,7 +54,7 @@
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <row name="teacher" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>bit</datatype>
 <default>NULL</default></row>
 <row name="cohort_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -68,7 +68,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="778" y="209" name="projects">
+<table x="737" y="241" name="projects">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -131,21 +131,31 @@
 <part>id</part>
 </key>
 </table>
-<table x="395" y="326" name="cohorts">
+<table x="355" y="302" name="cohorts">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="name" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
+<row name="pitchable" null="1" autoincrement="0">
+<datatype>bit</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="584" y="249" name="rounds">
+<table x="738" y="128" name="rounds">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="votable" null="1" autoincrement="0">
+<datatype>bit</datatype>
+<default>NULL</default></row>
+<row name="cohort_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="cohorts" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
