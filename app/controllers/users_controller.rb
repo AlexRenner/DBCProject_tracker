@@ -8,15 +8,15 @@ class UsersController < ApplicationController
   def create
 		# # render plain: params[:article].inspect
 		# p user_params
-	@user = User.new(user_params)#private method call
-	if @user.save
-		session[:user_id] = @user.id
-		p "@@@@@@@@@@@@@@"
-		p session[:user_id]
-		redirect_to @user #redirects to the show action
-	else
-		render 'new'
-	end
+  	@user = User.new(user_params)#private method call
+  	if @user.save
+  		session[:user_id] = @user.id
+  		p "@@@@@@@@@@@@@@"
+  		p session[:user_id]
+  		redirect_to @user #redirects to the show action
+  	else
+  		render 'new'
+  	end
   end
 
 

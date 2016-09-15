@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :votes
 
-  validates :email, :presence => true,
-                       :uniqueness => true
+  validates :email, :presence => true, :uniqueness => true
   validates :first_name, :last_name, :password_hash, :presence => true
 
 

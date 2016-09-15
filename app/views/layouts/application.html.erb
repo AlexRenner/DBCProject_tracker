@@ -30,13 +30,12 @@
           <% else %>
             <li>
               <form method="get" action="/users/<%= current_user.id %>">
-              <input type="submit" value="go to profile">
+                <input type="submit" value="go to profile">
               </form>
             </li>
 
             <li>
-              <form method="post" action="/logout"><input type="submit" value="logout">
-              </form>
+              <%= link_to "Logout", {controller: 'sessions', action: :destroy }, method: :delete %>
             </li>
 
           <% end %>
@@ -49,10 +48,10 @@
       </nav>
   </header>
 
-  
+
 	<div>
 	  <%= yield %>
 	</div>
-  
+
   </body>
 </html>
