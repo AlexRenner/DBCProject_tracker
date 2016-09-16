@@ -1,11 +1,11 @@
 module CohortHelper
 
   def current_cohort
-    @current_cohort ||= User.find(session[:user_id]).cohort
+    @current_cohort ||= User.find_by(id: session[:user_id]).cohort
   end
 
   def viewed_cohort
-    @viewed_cohort ||= Cohort.find(params[:cohort_id])
+    @viewed_cohort ||= Cohort.find_by(id: params[:cohort_id])
   end
 
   def latest_round

@@ -11,8 +11,6 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)#private method call
   	if @user.save
   		session[:user_id] = @user.id
-  		p "@@@@@@@@@@@@@@"
-  		p session[:user_id]
   		redirect_to @user #redirects to the show action
   	else
   		render 'new'
@@ -34,7 +32,6 @@ class UsersController < ApplicationController
     if current_user.teacher && @user.update(user_params)
       redirect_to '/'
     else
-      p @user.errors
       render 'edit'
     end
   end
@@ -49,7 +46,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    p params.require(:user).permit(:first_name, :last_name, :email, :password, :cohort_id, :teacher)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :cohort_id, :teacher)
   end
 
 end

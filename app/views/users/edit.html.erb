@@ -11,9 +11,8 @@
   <%= f.label :teacher %>
   <%= f.check_box :teacher %><br><br>
 
-  <%= f.label :cohort_id %><br>
-  <p>Enter 1 for Wolves, 2 for Salamanders or 3 for red Pandas:</p>
-  <%= f.text_field :cohort_id %><br><br>
+  <%= f.label :'Cohort:' %><br>
+  <%= collection_select(:project, :cohort_id, Cohort.all, :id, :name, prompt: true) %><br><br>
 
   <%= f.submit %>
 <% end %>
