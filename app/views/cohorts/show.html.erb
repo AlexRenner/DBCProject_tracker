@@ -14,8 +14,9 @@
 	<% end %>
 
 <% end %>
-
-<%= link_to 'All Cohorts', cohorts_path %>
-
+<p><%= link_to 'All Cohorts', cohorts_path %></p>
+<% if @cohort.teams %>
+<p><%= link_to 'All Teams', cohort_teams_path(@cohort) %></p>
+<% end %>
 
 

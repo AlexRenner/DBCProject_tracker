@@ -5,4 +5,5 @@ class Cohort < ActiveRecord::Base
   has_many :projects
   has_many :votes, through: :students
   has_many :rounds
+  has_many :teams, through: :students, source: :team
 end
