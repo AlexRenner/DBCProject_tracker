@@ -5,15 +5,16 @@ class Project < ActiveRecord::Base
   has_many :votes
 
   def mean_vote_value
-    all_votes = self.votes
+    all_votes = self.votes.where.not(value: 0)
 
     avg = (all_votes.map { |vote| vote[:value].to_f }.reduce(:+) / all_votes.length).round(2)
   end
 
   def find_vote_values
     vote_value_array = Array.new
+    all_votes = self.votes.where.not(value: 0)
 
-    self.votes.each do |vote|
+    all_votes.each do |vote|
       vote_value_array << vote[:value]
     end
 
