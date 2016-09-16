@@ -13,10 +13,10 @@
 	<%= f.text_field :email %><br><br>
 
 	<%= f.label :password %><br>
-	<%= f.password_field :password %><br><br>	
-	<%= f.label :cohort_id %><br>
-	<p>Enter 1 for Wolves, 2 for Salamanders or 3 for red Pandas:</p>
-	<%= f.text_field :cohort_id %><br><br>
+	<%= f.password_field :password %><br><br>
+
+  <%= f.label :cohort %><br>
+  <%= collection_select(:user, :cohort_id, Cohort.all, :id, :name, prompt: true) %><br><br>
 
 	<%= f.submit :register %>
 <% end %>

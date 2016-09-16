@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 		# # render plain: params[:article].inspect
 		# p user_params
   	@user = User.new(user_params)#private method call
+    p @user
   	if @user.save
   		session[:user_id] = @user.id
   		redirect_to @user #redirects to the show action
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       render 'edit'
     else
-      puts "not a teacher"
+      @errors = ["not a teacher"]
       redirect_to '/'
     end
   end

@@ -11,8 +11,8 @@
   <%= f.label :teacher %>
   <%= f.check_box :teacher %><br><br>
 
-  <%= f.label :'Cohort:' %><br>
-  <%= collection_select(:project, :cohort_id, Cohort.all, :id, :name, prompt: true) %><br><br>
+  <%= f.label :cohort %><br>
+  <%= collection_select(:user, :cohort_id, Cohort.all, :id, :name, prompt: true) %><br><br>
 
   <%= f.submit %>
 <% end %>
