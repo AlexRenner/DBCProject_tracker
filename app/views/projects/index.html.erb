@@ -14,35 +14,43 @@ th, td {
 <% @projects.each do |project| %>
 	<table style="width:100%">
 		<tr>
-			<th><%= project.title %></th>
-			<% project.votes.each do |vote| %>
-				<% if vote.value != 0 %>
-					<td> <%= vote.voter.first_name %> <%= vote.voter.last_name %>, vote:<%= vote.value %></td>
+			<% if !current_user.teacher && !current_user.has_voted?(project, @cohort.rounds.last) %>
+				<th><%= project.title %></th>
+			<% end %>
+			<% if current_user.teacher %>
+				<% project.votes.each do |vote| %>
+					<% if vote.value != 0 %>
+						<td> <%= vote.voter.first_name %> <%= vote.voter.last_name %>, vote:<%= vote.value %></td>
+					<% end %>
+				<% end %>
+				<% if project.votes[0] != nil %>
+					<td>Mean: <%=  project.mean_vote_value %></td>
+					<td>Mode: <%=  project.mode_vote_value %></td>
 				<% end %>
 			<% end %>
-			<% if project.votes[0] != nil %>
-				<td>Mean: <%=  project.mean_vote_value %></td>
-				<td>Mode: <%=  project.mode_vote_value %></td>
-			<% end %>
 
-			<% if current_user && @cohort.id == current_user.cohort_id %>
-				<% if @cohort.pitchable == false && @cohort.rounds.last.votable == true %>
+			<% if !current_user.teacher && !current_user.has_voted?(project, @cohort.rounds.last) %>
+				<% if current_user && @cohort.id == current_user.cohort_id %>
+					<% if @cohort.pitchable == false && @cohort.rounds.last.votable == true %>
 
-					<p>Place your vote from 1 to 5 in order of preference for each and every project, 1 being the highest.</p>
-					<% @vote =  project.votes.where("user_id=? and project_id=? and round_id=?", current_user.id, project.id, @cohort.rounds.last) %>
-					<%= form_for :vote, url: "/votes/#{@vote[0].id}", method: :put do |f| %>
-		             <%= radio_button_tag(:vote, '1') %>
-		             <%= label_tag(:vote_value, '1') %>
-		             <%= radio_button_tag(:vote, "2") %>
-		             <%= label_tag(:vote_value, "2") %>
-		             <%= radio_button_tag(:vote, "3") %>
-		             <%= label_tag(:vote_value, "3") %>
-		             <%= radio_button_tag(:vote, "4") %>
-		             <%= label_tag(:vote_value, "4") %>
-		             <%= radio_button_tag(:vote, "5") %>
-		             <%= label_tag(:vote_value, "5") %>
-		             <%= f.submit :'Cast Vote' %>
-		           <% end %>
+						<p>Place your vote from 1 to 5 in order of preference for each and every project, 1 being the highest.</p>
+						<% @vote =  project.votes.where("user_id=? and project_id=? and round_id=?", current_user.id, project.id, @cohort.rounds.last) %>
+						<% if @vote[0] %>
+							<%= form_for :vote, url: "/votes/#{@vote[0].id}", method: :put do |f| %>
+				             <%= radio_button_tag(:vote, '1') %>
+				             <%= label_tag(:vote_value, '1') %>
+				             <%= radio_button_tag(:vote, "2") %>
+				             <%= label_tag(:vote_value, "2") %>
+				             <%= radio_button_tag(:vote, "3") %>
+				             <%= label_tag(:vote_value, "3") %>
+				             <%= radio_button_tag(:vote, "4") %>
+				             <%= label_tag(:vote_value, "4") %>
+				             <%= radio_button_tag(:vote, "5") %>
+				             <%= label_tag(:vote_value, "5") %>
+				             <%= f.submit :'Cast Vote' %>
+				           <% end %>
+			           <% end %>
+					<% end %>
 				<% end %>
 			<% end %>
 		</tr>
@@ -56,7 +64,7 @@ th, td {
 	<% end %>
 <% end %>
 
--get the right voters, only the ones who voted on a project and their votes. Consider only votes with value != 0 for both displaying and for mean/mode calc.
+
 
 
 

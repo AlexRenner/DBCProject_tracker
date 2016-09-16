@@ -7,7 +7,7 @@ module UserHelper
 
   def user_team
     if current_user.team_id != nil
-      @team ||= Team.find(current_user.team_id)
+      @team ||= Team.find_by(id: current_user.team_id)
     else
       return false
     end

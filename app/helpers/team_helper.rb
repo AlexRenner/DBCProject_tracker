@@ -1,6 +1,6 @@
 module TeamHelper
   def current_team
-    @current_team ||= Team.find(params[:id])
+    @current_team ||= Team.find_by(id: current_user.team_id)
   end
 
   def team_members

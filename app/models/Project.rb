@@ -9,8 +9,9 @@ class Project < ActiveRecord::Base
 
   def mean_vote_value
     all_votes = self.votes.where.not(value: 0)
-
-    avg = (all_votes.map { |vote| vote[:value].to_f }.reduce(:+) / all_votes.length).round(2)
+    if !all_votes.empty?
+      avg = (all_votes.map { |vote| vote[:value].to_f }.reduce(:+) / all_votes.length).round(2)
+    end
   end
 
   def find_vote_values

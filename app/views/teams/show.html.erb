@@ -1,7 +1,9 @@
 <% if user_team %>
 
   <h2><%= user_team.name %></h2>
-  <h3><%= user_team.project.title %></h3>
+  <% if user_team.project %>
+    <h3><%= user_team.project.title %></h3>
+  <% end %>
   <ul>
     <% team_members.each do |student| %>
       <li><%= student.first_name %></li>
