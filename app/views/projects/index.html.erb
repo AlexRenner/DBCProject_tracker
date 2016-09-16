@@ -18,6 +18,7 @@ th, td {
 				<th><%= project.title %></th>
 			<% end %>
 			<% if current_user.teacher %>
+				<th><%= project.title %></th>
 				<% project.votes.each do |vote| %>
 					<% if vote.value != 0 %>
 						<td> <%= vote.voter.first_name %> <%= vote.voter.last_name %>, vote:<%= vote.value %></td>
