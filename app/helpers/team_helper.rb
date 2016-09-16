@@ -12,7 +12,7 @@ module TeamHelper
   end
 
   def unassigned_students
-    @unassigned_students ||= User.where(cohort_id: @cohort.id, team_id: 1, teacher: false)
+    @unassigned_students ||= User.where(cohort_id: @cohort.id, team_id: nil, teacher: false)
   end
 
   def unassigned_projects
