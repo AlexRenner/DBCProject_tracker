@@ -1,31 +1,55 @@
 div#new-register-form {
-  display: flex;
-  flex-flow: row wrap;
+    height: 500px;
+    width: 90%;
+    margin: 0 auto;
 
   form {
-    display: flex;
-    flex-flow: row wrap;
+    width: 100%;
 
-    label {
-      font-weight: bold;
+    p {
+      clear: both;
+      display: block;
+      float: right;
+      margin: 0;
+      margin-right: 15%;
     }
 
-      #user-email {
-        width: 200px;
-        color: red;
+    div#inputs {
+      display: flex;
+      flex-flow: row;
+
+      div {
+        display: flex;
+        /*justify-content: center;*/
+        /*clear: both;*/
+        /*float: left;*/
+        /*width: 100%;*/
+        flex: 1;
+        float: left;
+
       }
-    input {
-      height: 20px;
+
+      label {
+        color: red;
+        font-weight: bold;
+        margin: 0 5px;
+        width: 75px;
+      }
+
+      input {
+        /*background-color: blue;*/
+        height: 20px;
+      }
     }
-    input:nth-child(2) {
-      clear: right;
+
+    .register {
+      background-color: green;
+      height: 40px;
+      width: 200px;
+      clear: both;
+      margin-left: 47.5%;
+      margin-top: 5%;
+      /*background-color: ;*/
     }
   }
-
-  .register {
-    height: 40px;
-    width: 200px;
-    /*background-color: ;*/
-  }
-
 }
