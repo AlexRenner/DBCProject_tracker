@@ -1,11 +1,13 @@
+
 <%= form_for :team, url: cohort_teams_path(@cohort) do |f| %>
   <%= f.label :'Team Name:' %><br>
   <%= f.text_field :name %><br>
   <%= f.label :'Project:' %><br>
-  <%= collection_select(:project, :team_id, unassigned_projects, :id, :title, prompt: true) %><br>
+  <%= collection_select(:team, :project_id, unassigned_projects, :id, :title, prompt: true) %><br>
   <%= f.label :'Unassigned Students:' %><br>
-<% end %>
-<% unassigned_students.each do |student| %>
-  <%= check_box_tag(:pet_dog) %>
-  <%= label_tag(:pet_dog, "#{student.first_name.capitalize} #{student.last_name.capitalize}") %><br>
+  <% unassigned_students.each do |student| %>
+    <%= check_box_tag(:"student_#{student.id}") %>
+    <%= label_tag(:"student_#{student.id}", "#{student.first_name.capitalize} #{student.last_name.capitalize}") %><br>
+  <% end %>
+  <%= f.submit :"Create Team" %>
 <% end %>
