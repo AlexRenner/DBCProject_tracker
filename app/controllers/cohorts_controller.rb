@@ -30,8 +30,6 @@ class CohortsController < ApplicationController
   end
 
   def update
-	  p "@@@@@@@@@"
-      p params
 	  @cohort = Cohort.find(params[:id])
 	  if @cohort.pitchable == true
 		  if @cohort.update(pitchable: false)
