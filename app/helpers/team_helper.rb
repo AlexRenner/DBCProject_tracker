@@ -1,5 +1,9 @@
 module TeamHelper
   def current_team
+    @current_team ||= Team.find_by(id: current_user.team_id)
+  end
+
+  def viewed_team
     @current_team ||= Team.find_by(id: params[:id])
   end
 
