@@ -1,4 +1,4 @@
-cohort = Cohort.create(name: 'salamanders')
+cohort = Cohort.create(name: 'Salamanders')
 
 Team.create(name: 'Unassigned')
 
