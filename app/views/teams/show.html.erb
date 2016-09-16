@@ -1,9 +1,10 @@
+
 <h2><%= viewed_team.name %></h2>
   <% if viewed_team.project %>
     <h3><%= viewed_team.project.title %></h3>
   <% end %>
-  <ul>
-    <% viewed_team.students.each do |student| %>
-      <li><%= student.first_name %></li>
-    <% end %>
-  </ul>
+<ul>
+  <% viewed_team.students.each do |student| %>
+    <li><%= student.first_name %></li>
+  <% end %>
+</ul>

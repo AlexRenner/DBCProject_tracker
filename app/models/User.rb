@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     self.update(teacher: true)
   end
 
+  def has_voted?(project, round)
+    self.votes.find_by(project: project, round: round).value != 0
+  end
+
   def password
 	@password ||= BCrypt::Password.new(password_hash)
   end

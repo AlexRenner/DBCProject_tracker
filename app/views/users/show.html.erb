@@ -7,7 +7,7 @@
 <% else %>
 	<p>You're a student!</p>
   <% if current_team %>
-    <p><%= link_to 'View Team', team_path(current_team) %></p>
+    <p><%= link_to 'View Team', cohort_team_path(current_team) %></p>
   <% end %>
 <% end %>
 
