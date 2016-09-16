@@ -25,17 +25,17 @@ class TeamsController < ApplicationController
         User.find(id).update(team: @team)
       end
       # finds project picked in drop down list and assigns team_id
-      Project.find(team_params[:project_id]).update(team: @team)
+      Project.find(team_params[:project]).update(team: @team)
       # redirects to cohort# show page
       redirect_to cohort_teams_path(@cohort)
     else
-      @errors = @team.errors.full_messages
-      render new_cohort_team_path
+      @errors = @team.errors
+      render 'new'
     end
   end
 
   private
   def team_params
-    params.require(:team).permit(:name, :project_id)
+    params.require(:team).permit(:name, :project)
   end
 end

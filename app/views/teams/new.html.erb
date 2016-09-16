@@ -3,7 +3,7 @@
   <%= f.label :'Team Name:' %><br>
   <%= f.text_field :name %><br>
   <%= f.label :'Project:' %><br>
-  <%= collection_select(:team, :project_id, unassigned_projects, :id, :title, prompt: true) %><br>
+  <%= collection_select(:team, :project, unassigned_projects, :id, :title, prompt: true) %><br>
   <%= f.label :'Unassigned Students:' %><br>
   <% unassigned_students.each do |student| %>
     <%= check_box_tag(:"student_#{student.id}") %>
