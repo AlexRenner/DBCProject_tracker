@@ -19,8 +19,8 @@ class ProjectsController < ApplicationController
     	@project.cohort_id = params[:cohort_id]
     	render 'index'
     else
-      @project.errors.full_messages
-      render 'new'
+        @project.errors.full_messages
+        render 'new'
     end
   end
 

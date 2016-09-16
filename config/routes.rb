@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   	resources :projects
   end
 
+  put '/votes/:id' => 'votes#update'
 
   delete '/sessions' => 'sessions#destroy'
   post '/sessions' => 'sessions#create'
