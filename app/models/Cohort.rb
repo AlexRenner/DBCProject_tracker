@@ -6,4 +6,6 @@ class Cohort < ActiveRecord::Base
   has_many :votes, through: :students
   has_many :rounds
   has_many :teams, through: :students, source: :team
+
+  validates :name, presence: true
 end
