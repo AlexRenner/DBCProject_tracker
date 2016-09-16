@@ -1,0 +1,12 @@
+<h2><%= viewed_cohort.name %></h2>
+<ul>
+  <% viewed_cohort.teams.distinct.each do |team| %>
+  <% unless team.name == 'Unassigned' %>
+      <li><%= link_to "#{team.name}", cohort_team_path(viewed_cohort, team) %></li>
+    <% end %>
+  <% end %>
+</ul>
+<% if current_user.teacher %>
+  <p><%= link_to "Create Team", new_cohort_team_path %></p>
+<% end %>
+<p><%= link_to "All Cohorts", cohorts_path %></p>

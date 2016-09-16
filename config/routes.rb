@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   resources :cohorts do
   	resources :rounds
+    resources :teams
   end
-
 
 
   delete '/sessions' => 'sessions#destroy'
