@@ -1,3 +1,4 @@
+<%= @errors if @errors%>
 <div id="login-form">
   <%= form_tag('/sessions') do %>
     <%= label_tag(:email, "Email:") %>
