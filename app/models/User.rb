@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   end
 
   def has_voted?(project, round)
-    self.votes.find_by(project: project, round: round).value != 0
+    votes = self.votes.find_by(project: project, round: round)
+    votes && votes.value != 0
   end
 
   def password
