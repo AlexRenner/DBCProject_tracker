@@ -1,6 +1,7 @@
 <%= render 'form' %>
 
 <p>Sign up for a new account:</p>
+
 <div id="new-register-form">
 	<%= form_for :user, url: users_path do |f| %>
 	<div id="inputs">
@@ -18,11 +19,10 @@
 		<%= f.password_field :password %><br><br>
 	</div>
 	<div id="cohort">
-		<%= f.label :cohort_id %><br>
-		<%= f.text_field :cohort_id %><br><br>
+  <%= f.label :cohort %><br>
+  <%= collection_select(:user, :cohort_id, Cohort.all, :id, :name, prompt: true) %><br><br>
 	</div>
 </div>
-		<p><strong>Enter:</strong> 1 for Wolves,<br>2 for Salamanders, <br>3 for red Pandas:</p>
 		<%= f.submit :register, class: 'register' %>
 	<% end %>
 </div>

@@ -5,10 +5,10 @@ class CohortsController < ApplicationController
 	  	@cohorts = Cohort.all
 	  	@cohort = current_user.cohort
 	  	render 'index'
-	else
-		@errors = ["Please log in to view information about cohorts"]
-		redirect_to '/'
-	end
+  	else
+  		@errors = ["Please log in to view information about cohorts"]
+  		render new_session_path
+  	end
   end
 
   def show
@@ -44,7 +44,7 @@ class CohortsController < ApplicationController
 		    redirect_to @cohorts
 		end
 	  end
-	end 
+	end
 
   private
   def cohort_params
