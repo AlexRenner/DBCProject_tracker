@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 		# # render plain: params[:article].inspect
 		# p user_params
   	@user = User.new(user_params)#private method call
-    p @user
   	if @user.save
   		session[:user_id] = @user.id
   		redirect_to @user #redirects to the show action
