@@ -1,40 +1,67 @@
-<h3>You are currently viewing Projects for the <%= @cohort.name.capitalize %> Cohort</h3>
-<style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
-}
+<style type="text/css">
+	#project-votes {
 
+	}
+	#project-votes p {
+		display: inline-block;
+		padding: 0 5px;
+		margin: 0;
+		text-align: center;
+	}
+
+	.vote {
+
+		border: 1px black solid;
+		display: inline-block;
+		margin: 0 5px;
+	}
+
+	.vote p {
+		text-align: center;
+		margin: 0;
+	}
 </style>
 
+<h3>You are currently viewing Projects for the <%= @cohort.name.capitalize %> Cohort</h3>
+<p>Place your vote from 1 to 5 in order of preference for each and every project, 1 being the highest.</p>
+<div class="vote">
+						<p>Student Name</p><br>
+						<p>Vote Value Status</p>
+</div>
+<% if current_user %>
+	<% if @cohort.pitchable %>
+		<%= link_to 'Add new pitch', new_cohort_project_path(@cohort) %>
+	<% end %>
+<% end %>
+
 <% @projects.each do |project| %>
-	<table style="width:100%">
-		<tr>
 			<% if !current_user.teacher && !current_user.has_voted?(project, @cohort.rounds.last) %>
-				<th><%= project.title %></th>
+				<h3><%= project.title %></h3>
+				<p><%= project.description %></p>
 			<% end %>
+
 			<% if current_user.teacher %>
-				<th><%= project.title %></th>
+
+				<h3><%= project.title %></h3>
+				<% if project.votes[0] != nil %>
+					<p>Mean: <%=  project.mean_vote_value %> -- Mode: <%=  project.mode_vote_value %></p>
+				<% end %>
+				<div id="project-votes">
 				<% project.votes.each do |vote| %>
 					<% if vote.value != 0 %>
-						<td> <%= vote.voter.first_name %> <%= vote.voter.last_name %>, vote:<%= vote.value %></td>
+					<div class="vote">
+						<p> <%= vote.voter.first_name %> <%= vote.voter.last_name %></p><br>
+						<p> <%= vote.value %></p>
+					</div>
 					<% end %>
 				<% end %>
-				<% if project.votes[0] != nil %>
-					<td>Mean: <%=  project.mean_vote_value %></td>
-					<td>Mode: <%=  project.mode_vote_value %></td>
-				<% end %>
+			</div>
 			<% end %>
 
 			<% if !current_user.teacher && !current_user.has_voted?(project, @cohort.rounds.last) %>
 				<% if current_user && @cohort.id == current_user.cohort_id %>
 					<% if @cohort.pitchable == false && @cohort.rounds.last.votable == true %>
 
-						<p>Place your vote from 1 to 5 in order of preference for each and every project, 1 being the highest.</p>
 						<% @vote =  project.votes.where("user_id=? and project_id=? and round_id=?", current_user.id, project.id, @cohort.rounds.last) %>
 						<% if @vote[0] %>
 							<%= form_for :vote, url: "/votes/#{@vote[0].id}", method: :put do |f| %>
@@ -59,11 +86,6 @@ th, td {
 	</table>
 <% end %>
 
-<% if current_user %>
-	<% if @cohort.pitchable %>
-		<%= link_to 'Add new pitch', new_cohort_project_path(@cohort) %>
-	<% end %>
-<% end %>
 
 
 
