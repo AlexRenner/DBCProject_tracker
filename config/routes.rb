@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   resources :cohorts do
   	resources :rounds
     resources :teams
+  	resources :projects
   end
 
+  put '/votes/:id' => 'votes#update'
 
   delete '/sessions' => 'sessions#destroy'
   post '/sessions' => 'sessions#create'

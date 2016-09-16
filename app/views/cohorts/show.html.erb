@@ -1,4 +1,4 @@
-<h3>Welcome to the "<%= @cohort.name %>"" page!</h3>
+<h3>Welcome to the "<%= @cohort.name.capitalize %>" page!</h3>
 
 <% if current_user.teacher %>
 	<% if @cohort.pitchable == false %>
@@ -6,17 +6,22 @@
 	<% else %>
 		<%= link_to 'Stop Pitch Round', cohort_path(@cohort), method: :put %><br><br>
 	<% end %>
-<% if @cohort.rounds.any? %>
+  <% if @cohort.rounds[0] == nil %>
+  	<%= link_to 'Start a Vote Round', cohort_rounds_path(@cohort), method: :create %><br><br>
+  <% else %>
 	<% if @cohort.rounds.last.votable == false %>
 		<%= link_to 'Start a Vote Round', cohort_rounds_path(@cohort), method: :create %><br><br>
 	<% else %>
 		<%= link_to 'Stop Voting', cohort_round_path(@cohort, @cohort.rounds.last), method: :put %><br><br>
 	<% end %>
+
+  <% end %>
 <% end %>
-<% end %>
+
 <p><%= link_to 'All Cohorts', cohorts_path %></p>
+
 <% if @cohort.teams %>
 <p><%= link_to 'All Teams', cohort_teams_path(@cohort) %></p>
 <% end %>
 
-
+<%= link_to 'Projects for This Cohort', cohort_projects_path(@cohort) %>

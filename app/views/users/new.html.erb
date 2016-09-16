@@ -1,22 +1,28 @@
-
 <%= render 'form' %>
 
 <p>Sign up for a new account:</p>
-<%= form_for :user, url: users_path do |f| %>
-	<%= f.label :first_name %><br>
-	<%= f.text_field :first_name %><br><br>
 
-	<%= f.label :last_name %><br>
-	<%= f.text_field :last_name %><br><br>
+<div id="new-register-form">
+	<%= form_for :user, url: users_path do |f| %>
+	<div id="inputs">
+	<div id="names">
+		<%= f.label :first_name %><br>
+		<%= f.text_field :first_name %><br><br>
+		<%= f.label :last_name %><br>
+		<%= f.text_field :last_name %><br><br>
+	</div>
+	<div id="user-info">
+		<%= f.label :email %><br>
+		<%= f.text_field :email %><br><br>
 
-	<%= f.label :email %><br>
-	<%= f.text_field :email %><br><br>
-
-	<%= f.label :password %><br>
-	<%= f.password_field :password %><br><br>
-
+		<%= f.label :password %><br>
+		<%= f.password_field :password %><br><br>
+	</div>
+	<div id="cohort">
   <%= f.label :cohort %><br>
   <%= collection_select(:user, :cohort_id, Cohort.all, :id, :name, prompt: true) %><br><br>
-
-	<%= f.submit :register %>
-<% end %>
+	</div>
+</div>
+		<%= f.submit :register, class: 'register' %>
+	<% end %>
+</div>

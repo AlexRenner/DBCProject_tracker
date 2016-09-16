@@ -4,6 +4,9 @@ class Project < ActiveRecord::Base
   belongs_to :originator, class_name: 'User', foreign_key: :user_id
   has_many :votes
 
+  validates :title, presence: true, uniqueness: true
+  validates :description, :cohort_id, :user_id, presence: true
+
   def mean_vote_value
     all_votes = self.votes.where.not(value: 0)
 
