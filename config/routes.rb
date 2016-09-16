@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :cohorts do
   	resources :rounds
     resources :teams
+  	resources :projects
   end
 
 

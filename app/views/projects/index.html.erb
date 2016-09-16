@@ -1,0 +1,49 @@
+<h3>You are currently viewing Projects for the <%= @cohort.name.capitalize %> Cohort</h3>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+</style>
+
+<table style="width:100%">
+	<tr>
+		<% @projects.each do |project| %>
+			<th><%= project.title %></th>
+		<% end %>
+	</tr>
+
+	<% @cohort.students.count.times do  %>
+	<tr>
+		<% @projects.each do |project|  %>
+			<%= project.each do |vote| %>
+				<td> <%= User.find(vote.user_id).first_name %> <%= vote.value %></td>
+			<% end %>
+		<% end %>
+	</tr>
+	<% end %>
+</table>
+
+<% if current_user %>
+	<% if @cohort.pitchable %>
+		<%= link_to 'Add new pitch', new_cohort_project_path(@cohort) %>
+	<% end %>
+<% end %>
+<% if current_user && @cohort.id == current_user.cohort_id %>
+	<% if @cohort.pitchable == false && @cohort.rounds.last.votable == true %>
+		<p>Place your vote from 1 to 5 in order of preference for each and every project, 1 being the highest.</p>
+		<%= link_to '' %>
+	<% end %>
+
+<% end %>
+
+
+
+
+
+
