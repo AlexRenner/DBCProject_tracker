@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       render 'edit'
     else
-      puts "not a teacher"
+      @errors = ["not a teacher"]
       redirect_to '/'
     end
   end
@@ -32,7 +32,6 @@ class UsersController < ApplicationController
     if current_user.teacher && @user.update(user_params)
       redirect_to '/'
     else
-      p @user.errors
       render 'edit'
     end
   end
@@ -47,7 +46,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    p params.require(:user).permit(:first_name, :last_name, :email, :password, :cohort_id, :teacher)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :cohort_id, :teacher)
   end
 
 end

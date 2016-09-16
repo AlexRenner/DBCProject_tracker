@@ -1,25 +1,10 @@
-<% if user_team %>
 
-  <h2><%= user_team.name %></h2>
-  <% if user_team.project %>
-    <h3><%= user_team.project.title %></h3>
+<h2><%= viewed_team.name %></h2>
+  <% if viewed_team.project %>
+    <h3><%= viewed_team.project.title %></h3>
   <% end %>
-  <ul>
-    <% team_members.each do |student| %>
-      <li><%= student.first_name %></li>
-    <% end %>
-  </ul>
-
-<% else %>
-
-  <h2><%= current_team.name %></h2>
-  <% if current_team.project %>
-    <h3><%= current_team.project.title %></h3>
+<ul>
+  <% viewed_team.students.each do |student| %>
+    <li><%= student.first_name %></li>
   <% end %>
-  <ul>
-    <% current_team.students.each do |student| %>
-      <li><%= student.first_name %></li>
-    <% end %>
-  </ul>
-
-<% end %>
+</ul>
