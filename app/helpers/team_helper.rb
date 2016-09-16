@@ -16,6 +16,6 @@ module TeamHelper
   end
 
   def unassigned_projects
-    @unassigned_projects ||= Project.where(cohort_id: params[:cohort_id], team_id: 1)
+    @unassigned_projects ||= Project.where(cohort_id: params[:cohort_id], team_id: nil)
   end
 end
