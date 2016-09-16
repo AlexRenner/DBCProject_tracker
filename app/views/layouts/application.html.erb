@@ -26,9 +26,7 @@
 
           <% else %>
             <li>
-              <form method="get" action="/users/<%= current_user.id %>">
-                <input type="submit" value="go to profile">
-              </form>
+              <%= link_to "View Profile", user_path(current_user) %>
             </li>
 
             <li>

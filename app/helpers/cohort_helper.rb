@@ -5,7 +5,7 @@ module CohortHelper
   end
 
   def viewed_cohort
-    @viewed_cohort ||= Cohort.find_by(id: params[:cohort_id])
+    @viewed_cohort ||= Cohort.find_by(id: (params[:cohort_id] || params[:id]))
   end
 
   def latest_round
